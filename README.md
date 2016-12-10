@@ -1,1 +1,1 @@
-# ios-wildcard_to_netmask
+Search through a file, locating normal network masks, then invert them into Cisco IOS wildcard masks
