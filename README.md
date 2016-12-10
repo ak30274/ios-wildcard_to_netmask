@@ -1,6 +1,6 @@
-ios-wildcard_to_netmask.py is a script that will search through a file, locating normal network masks, then invert them into Cisco IOS wildcard masks.
+ios-wildcard_to_netmask.py is a script that will search through a file, locating Cisco IOS wildcard masks, then invert them into normal network masks.
 
-This script is written for ease of use in macOS and Linux, however, it can be modified to use a Desktop path in Windows, however, I have not implemented that capability.
+This script is written for ease of use in macOS and Linux, however, it can be modified to use a Desktop path in Windows.  I have not implemented that capability.
 
 In order to use this script, follow these steps:
 
