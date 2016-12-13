@@ -7,22 +7,20 @@ import os
 # DEFINE HOME DIRECTORY VARIABLE:
 HomeDirectory = os.path.expanduser('~')
 #
-# READ IN THE FILE, WHICH WILL BE ON THE CURRENT USER'S DESKTOP:
-file= open(HomeDirectory + '/Desktop/InvertMe.txt').read()
-#
-# CREATE A NEW FILE ON THE CURRENT USERS'S DESKTOP TO OUTPUT THE CHANGES INTO:
-out = open(HomeDirectory + '/Desktop/Inverted.txt', 'w')
-#
 # DEFINE THE MASK INVERSIONS:
 replacements = {'0.0.0.1':'255.255.255.254', '0.0.0.3':'255.255.255.252', '0.0.0.7':'255.255.255.248', '0.0.0.15':'255.255.255.240', '0.0.0.31':'255.255.255.224', '0.0.0.63':'255.255.255.192', '0.0.0.127':'255.255.255.128', '0.0.0.255':'255.255.255.0', '0.0.1.255':'255.255.254.0', '0.0.3.255':'255.255.252.0', '0.0.7.255':'255.255.248.0', '0.0.15.255':'255.255.240.0', '0.0.31.255':'255.255.224.0', '0.0.63.255':'255.255.192.0', '0.0.127.255':'255.255.128.0', '0.0.255.255':'255.255.0.0', '0.1.255.255':'255.254.0.0', '0.3.255.255':'255.252.0.0', '0.7.255.255':'255.248.0.0', '0.15.255.255':'255.240.0.0', '0.31.255.255':'255.224.0.0', '0.63.255.255':'255.192.0.0', '0.127.255.255':'255.128.0.0', '0.255.255.255':'255.0.0.0', '1.255.255.255':'254.0.0.0', '3.255.255.255':'252.0.0.0', '7.255.255.255':'248.0.0.0', '15.255.255.255':'240.0.0.0', '31.255.255.255':'224.0.0.0', '63.255.255.255':'192.0.0.0', '127.255.255.255':'128.0.0.0', '0.0.0.0 255.255.255.255':'0.0.0.0 0.0.0.0', '0.0.0.0 0.0.0.0':'0.0.0.0 255.255.255.255', '0.0.0.0 mask 255.255.255.255':'0.0.0.0 mask 0.0.0.0', '0.0.0.0 mask 0.0.0.0':'0.0.0.0 mask 255.255.255.255' }
 #
-# PERFORM THE MASK INVERSION VIA REPLACEMENT:
-for i in replacements.keys():
-    file = file.replace(i, replacements[i])
+lines = []
 #
-# WRITE THE CHANGES TO FILE:
-out.write(file)
+# READ LINES FROM INPUT FILE:
+with open(HomeDirectory + '/Desktop/InvertMe.txt') as infile:
+    for line in infile:
+        for src, target in replacements.iteritems():
+            line = line.replace(src, target)
+        lines.append(line)
 #
-# CLOSE THE FILE:
-out.close
+# WRITE LINES TO OUTPUT FILE:
+with open(HomeDirectory + '/Desktop/Inverted.txt', 'w') as outfile:
+    for line in lines:
+        outfile.write(line)
 #
